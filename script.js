@@ -162,7 +162,7 @@ class Herro {
   } 
 
   // Определяем какой сейчас уровень и делаем подготовку для следующего
-  newLevel=()=>{
+  newLevel(){
     if (this.level<10){
       this.level++;
 
