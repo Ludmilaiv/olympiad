@@ -131,25 +131,35 @@ class Herro {
   }
 
   //функция, определяющая, свободен ли путь в заданном направлении
-  isFree = (dir) => {
-    const x = gameHerro.x, y = gameHerro.y;
+  isFree(dir) {
+    const x = this.x, y = this.y;
     let wall;
     switch(dir) {
       case "right":
-        wall = gameHerro.map[y][x+1];
+        wall = this.map[y][x+1];
         break;
       case "left":
-        wall = gameHerro.map[y][x-1];
+        wall = this.map[y][x-1];
         break;
       case "top":
-        wall = gameHerro.map[y-1][x];
+        wall = this.map[y-1][x];
         break;
       case "down":
-        wall = gameHerro.map[y+1][x];
+        wall = this.map[y+1][x];
         break;
     }
     return !wall;
   };
+
+  //определяет, совпадают ли текущие координаты с целью 
+
+  isGoal() {
+    if (this.x == this.finishPosition[this.level-1][0] &&  this.y== this.finishPosition[this.level-1][1]) {
+      return true;
+    } else {
+      return false;
+    }
+  } 
 
   // Определяем какой сейчас уровень и делаем подготовку для следующего
   newLevel=()=>{
@@ -208,6 +218,7 @@ const gameHerro = new Herro();
 document.addEventListener("DOMContentLoaded", () => {
   gameHerro.newLevel();
 
+  // активируем панель инструментов
   const workspace = Blockly.inject('blocklyDiv', {
     toolbox: document.getElementById('toolbox')
   });
