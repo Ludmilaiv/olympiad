@@ -1,135 +1,348 @@
-* {
-  box-sizing: border-box;
-}
-
-.container {
-  display: flex;
-}
-
-#blocklyDiv {
-  height: 600px; 
-  width: 700px;
-}
-
-
-#showGame {
-  position: relative;
-  min-width: 600px;
-  border: 1px solid gray;
-  background: #ccc;
-  background-size: cover;
-  background-repeat: no-repeat
-}
-#herro {
-  position: absolute;
-  width: 85px;
-  height: 85px;
-  background-size: cover !important;
-  z-index: 9;
-  transition: opacity 1s;
-}
-
-.track {
-  box-sizing: content-box;
-  position: absolute;
-  padding: 0 30px 30px 0;
-  border-radius: 40px;
-  background-color: #fff;
-  opacity: 0.7;
-}
-
-#exit{
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  top: 188px;
-  left: 450px;
-  background-size: cover !important;
-  z-index: 1;
-}
-
-#start {
-  padding: 10px 20px;
-}
-
-#reset {
-  padding: 10px 20px;
-}
-
-/* Стили для модальных окон */
-.overlay {
-   opacity: 0;
-   visibility: hidden;
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(0, 0, 0, .5);
-   z-index: 998;
-   transition: .7s all;
-}
-
-
-.modal {
-   opacity: 0;
-   visibility: hidden;
-   width: 100%;
-   max-width: 500px;
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   z-index: 999;
-   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
-   text-align: center;
-   padding: 30px;
-   border-radius: 3px;
-   background-color: #fff;
-   transition: 0.3s all;
-}
-
-.modal .content{font-size: 19px;}
-
-
-.modal.active,
-.overlay.active{
-   opacity: 1;
-   visibility: visible;
-}
-
-.modal__cross {
-   width: 15px;
-   height: 15px;
-   position: absolute;
-   top: 20px;
-   right: 20px;
-   fill: #444;
-   cursor: pointer;
-   transition: 0.7s;
-}
-
-.modal__cross:hover {
-  fill: #005b7f;
-}
-a.show-mission:hover, button.ready:hover {
-  background-color: #0b8fc3;
-}
-a.show-mission, button.ready {
-   padding: 10px;
-   text-decoration: none;
-   background-color: #005b7f;
-   margin: 10px 0;
-   color: #fff;
-   border-radius: 3px;
-   font-size: 22px;
-   display: inline-block;
-   cursor: pointer;
-   outline: none;
-   transition: 0.7s;
-}
-
-button.ready {
-  float: right;
-  margin-top: 40px;
+@font-face{
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto-Regular.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+* {
+  box-sizing: border-box;
+  font-family: Roboto, Arial;
+}
+
+body{
+	background: url('../images/fon.jpg') no-repeat;
+	background-size: cover;
+}
+
+.container {
+  display: flex;
+}
+
+.top-panel{
+	background: #594284;
+	border-radius: 40px 40px 0 0;
+	border: solid #594284 1px;
+	padding: 10px 20px;
+	display: flex;
+    justify-content: space-between;
+}
+
+.tool-pannel{
+	height: 72px;
+	width: 100%;
+	background: #563d6d;
+	display: inline-flex;
+}
+
+#levels ul{
+	padding: 0;
+	display: inline-flex;
+	justify-content: space-between;
+}
+
+#levels ul li{
+	float: left;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	list-style: none;
+	margin-right: 8px;
+	border-radius: 50%;
+	font-size: 18px;
+	color: #52449B;
+	line-height: 22px;
+	background-color: #b1a4c5;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#levels a{
+	text-decoration: none;
+	font-weight: 500;
+}
+
+#levels ul li:last-child{
+	margin-right: 0px;
+}
+
+#levels ul li.active{
+	background-color: #fff;
+	font-weight: 700;
+	box-shadow: 0 0 9px rgba(255,255,255,0.5);
+}
+
+.page-content{
+	max-width: 1400px;
+	width: 80%;
+	min-width: 960px;
+	margin: 0 auto;
+	border-top-left-radius: 40px;
+	border-top-right-radius: 40px;
+	background: #fff;
+	margin-top: 50px;
+	border: solid #cfcfcf 1px;
+}
+
+#blocklyDiv {
+  height: 672px; 
+  flex: 1;
+  
+}
+
+.blocklyTreeLabel{
+	cursor: pointer;
+}
+
+#showGame {
+	position: relative;
+	min-width: 600px;
+	border: 1px solid gray;
+	background: #ccc;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 600px;
+	border: none;
+}
+
+#herro {
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  background-size: cover !important;
+  z-index: 9;
+  transition: opacity 1s;
+}
+
+.track {
+  box-sizing: content-box;
+  position: absolute;
+  padding: 0 30px 30px 0;
+  border-radius: 40px;
+  background-color: #fff;
+  opacity: 0.7;
+}
+
+#exit{
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 188px;
+  left: 450px;
+  background-size: cover !important;
+  z-index: 1;
+}
+
+#start, .ready {
+	padding: 10px 20px;
+	background:#E1A053;
+	border: none;
+	margin-left: 10px;
+	color: #fff;
+   	display: inline-flex !important;
+    align-items: center;
+}
+
+#start:hover, .ready:hover {
+	background:#DF8F2F;
+}
+
+#reset{
+	background: #7D599C;
+	border: none;
+	color: #fff;
+	margin-left: 16px;
+}
+
+#reset:hover{
+	background: #623589;
+}
+
+
+.blocklyTreeRow{
+	padding: 16px 21px;
+	height: 48px; 
+	background: #e1e4ff;
+	cursor: pointer;
+}
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover{
+	background: #C9CEFF !important;
+}
+
+.blocklyTreeSelected{
+	background: #6C4E91 !important;
+}
+
+
+
+/* Стили для модальных окон */
+.overlay {
+   opacity: 0;
+   visibility: hidden;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, .5);
+   z-index: 998;
+   transition: .7s all;
+}
+
+
+.modal {
+   opacity: 0;
+   visibility: hidden;
+   width: 100%;
+   max-width: 500px;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   z-index: 999;
+   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
+   text-align: center;
+   padding: 30px;
+   border-radius: 3px;
+   background-color: #fff;
+   transition: 0.3s all;
+   border: 6px solid #52449B;
+   border-radius: 40px;
+}
+
+.modal .content{font-size: 19px;}
+
+
+.modal.active,
+.overlay.active{
+   opacity: 1;
+   visibility: visible;
+}
+
+.modal__cross {
+   width: 15px;
+   height: 15px;
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   fill: #444;
+   cursor: pointer;
+   transition: 0.7s;
+}
+
+.modal__cross:hover {
+	fill: #005b7f;
+}
+
+.btn:hover, a.show-hint:hover {
+	background-color: #E1E4FF;
+}
+
+/*.btn:active, a.show-hint:active {
+    background: #E1E4FF;
+}*/
+
+.btn, .ready{
+   text-decoration: none;
+   margin: 10px 0;
+   color: #fff;
+   border-radius: 3px;
+   font-size: 22px;
+   display: inline-block !important;
+   cursor: pointer;
+   outline: none;
+   transition: 0.7s;
+   background-color: #005b7f;
+}
+
+.btn{
+	padding: 16px 32px !important;
+}
+
+
+
+.btn, #score, .ready{
+  background-color: #fff;
+  border-radius: 50px;
+  margin-right: 20px;
+  padding: 13px 16px;
+  text-decoration: none;
+  margin: 10px 0;
+  color: #000;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  height: 50px;
+
+}
+
+a.show-hint{
+	margin-left: 20px;
+	display: inline-flex !important;
+	align-items: center;
+}
+
+
+button.ready {
+  color: #fff;
+  background: #E1A053;
+  margin-top: 30px;
+}
+
+div#score, #curlevel{
+  float: right;
+  display: inline-flex;
+  align-items: center;
+}
+
+div#score .value, #curlevel{
+  font-size: 35px;
+  font-weight: 700;
+  color: #f00;
+  padding: 0 7px;
+}
+
+div#score{
+	position: relative;
+	min-width: 118px;
+	display: flex;
+    justify-content: center;
+}
+
+#curlevel{
+	margin-right: 100px;
+	color: #cfcfcf;
+}
+
+
+div#score div.scoreAnim{
+  transform: scale(15);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 9990;
+  font-size: 35px;
+  font-weight: 600;
+  transition: 1s;
+  opacity: 0.5;
+  /*display: none;*/
+}
+
+
+div#score div.add{
+  color: #0f0;
+}
+
+div#score div.sub{
+  color: #f00;
+}
+
+.showBonus{
+  transition: 1s;
+  opacity: 0 !important;
+  transform: scale(1)!important;
 }
