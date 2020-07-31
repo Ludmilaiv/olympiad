@@ -74,8 +74,6 @@ Blockly.JavaScript['while_not_goal'] = function(block) {
 
     limitLoop--;
 
-    console.log(limitLoop)
-
     ${statements_loop_body}
 
   };\n`;
@@ -137,13 +135,11 @@ Blockly.JavaScript['while_x'] = function(block) {
   
   var code = `
 
-  let limitLoop = 1000;
+  let limitLoopX = 1000;
 
   while (gameHerro.x*50 ${dropdown_comparing} ${text_value}) {
 
-    limitLoop--;
-
-    console.log(limitLoop)
+    limitLoopX--;
 
     ${statements_loop_body}
 
@@ -159,14 +155,12 @@ Blockly.JavaScript['while_y'] = function(block) {
   
   var code = `
 
-  let limitLoop = 1000;
+  let limitLoopY = 1000;
 
-  while (gameHerro.y*50 ${dropdown_comparing} ${text_value}) {
+  while ((gameHerro.map.length - 1 - gameHerro.y) * 50 ${dropdown_comparing} ${text_value}) {
 
-    limitLoop--;
-
-    console.log(limitLoop)
-
+    limitLoopY--;
+    
     ${statements_loop_body}
 
   };\n`;

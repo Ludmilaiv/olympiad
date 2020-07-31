@@ -58,7 +58,7 @@ Blockly.Blocks['go_up'] = {
 
     this.appendDummyInput()
 
-        .appendField("Вверх");
+        .appendField("Шаг вверх");
 
     this.setPreviousStatement(true, null);
 
@@ -82,7 +82,7 @@ Blockly.Blocks['go_down'] = {
 
     this.appendDummyInput()
 
-        .appendField("Вниз");
+        .appendField("Шаг вниз");
 
     this.setPreviousStatement(true, null);
 
