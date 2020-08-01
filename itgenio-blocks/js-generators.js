@@ -51,7 +51,7 @@ Blockly.JavaScript['while_direction_free'] = function(block) {
   var code = `
 
   while (gameHerro.isFree("${dropdown_direction}")) {
-
+    if (gameHerro.isGoal()) break;
     ${statements_loop_body}
 
   };\n`;
@@ -67,16 +67,17 @@ Blockly.JavaScript['while_not_goal'] = function(block) {
   var statements_loop_body = Blockly.JavaScript.statementToCode(block, 'loop_body');
 
   var code = `
+ (function() {
+    var limitLoop = 1000;
 
-  let limitLoop = 1000;
+    while (!gameHerro.isGoal() && limitLoop > 0) {
 
-  while (!gameHerro.isGoal() && limitLoop > 0) {
+      limitLoop--;
 
-    limitLoop--;
+      ${statements_loop_body}
 
-    ${statements_loop_body}
-
-  };\n`;
+    }
+  })();\n`;
 
   return code;
 
@@ -134,16 +135,15 @@ Blockly.JavaScript['while_x'] = function(block) {
   var statements_loop_body = Blockly.JavaScript.statementToCode(block, 'loop_body');
   
   var code = `
-
-  let limitLoopX = 1000;
-
-  while (gameHerro.x*50 ${dropdown_comparing} ${text_value}) {
-
-    limitLoopX--;
-
-    ${statements_loop_body}
-
-  };\n`;
+  (function() {
+    var limitLoop = 1000;
+    while (gameHerro.x*50 ${dropdown_comparing} ${text_value}) {
+      limitLoop--;
+    
+      if (gameHerro.isGoal()) break;
+      ${statements_loop_body}
+    }
+  })();\n`;
 
   return code;
 };
@@ -155,15 +155,14 @@ Blockly.JavaScript['while_y'] = function(block) {
   
   var code = `
 
-  let limitLoopY = 1000;
-
-  while ((gameHerro.map.length - 1 - gameHerro.y) * 50 ${dropdown_comparing} ${text_value}) {
-
-    limitLoopY--;
-    
-    ${statements_loop_body}
-
-  };\n`;
+  (function() {
+    var limitLoop = 1000;
+    while ((gameHerro.map.length - 1 - gameHerro.y) * 50 ${dropdown_comparing} ${text_value}) {
+    limitLoop--;
+    if (gameHerro.isGoal()) break;
+      ${statements_loop_body}
+    }
+  })();\n`;
 
   return code;
 };
