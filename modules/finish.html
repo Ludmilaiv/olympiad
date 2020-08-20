@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <title>Олимпиада в Айтигенио 2020</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+	<div class="page-content lastPagepage-content">
+		<div class="top-panel lastPagetop-panel">
+			<div class="line-block">
+		  		<span class="lastPageTitle"><img src="../images/student.png" alt="">&nbsp;Никита Пищуленок</span>
+		  	</div>
+		</div>
+		
+
+	  <div class="container">
+	    
+    	<div id="lastPageLeftPannel">
+    		<span class="title">Результаты</span>
+    		<div class="results">
+    			<div class="line">
+    				<div class="left">Количество набранных баллов</div><div class="right">32</div>
+    			</div>
+    			<div class="line">
+    				<div class="left">Использовано блоков</div><div class="right">123</div>
+    			</div>
+    			<div class="line">
+    				<div class="left">Потрачено времени на выполнение</div><div class="right">60:54</div>
+    			</div>
+
+    			<div class="line">
+    				<div class="left ad">Победите квеста будут известны 30.08</div>
+    			</div>
+    		</div>
+		</div>
+
+		<div id="lastPageRightPannel">
+			<div class="row">
+				<span class="title">Призы</span>
+        <!-- Кнопка ниже скрывается в css. Удалять ее нельзя -->
+        <button id='btnDisplay' class='hidden' style="display: none;">Display</button> 
+				<button id='btnSave' class="saveInPDF">Скачать в png</button>
+			</div>
+			
+			<div class="wrapper">
+				
+					<div class="box">
+            <img id="image1" src="../images/sertificate.png" class="hidden"/>
+            <canvas id='myCanvas' width="790" height="490"></canvas>
+					</div>
+				
+				<img src="" alt="" id='imgConverted' class='hidden' >
+				
+			</div>
+		</div>	    
+	  </div>
+	</div>
+	
+
+  <script>
+  	const btnSave=document.querySelector('#btnDisplay');
+  	const btnDwd=document.querySelector('#btnSave');
+  	const canvas = document.getElementById('myCanvas');
+    var img=document.getElementById("image1");
+  	const imgConverted = document.getElementById('imgConverted');
+    const ctx = canvas.getContext('2d');
+    var koef=1;
+    if (document.body.clientWidth>=1600){
+      koef=1.84;
+    }
+    else if(document.body.clientWidth>=1400 && document.body.clientWidth<1600){
+      koef=1.56;
+    }
+    else if(document.body.clientWidth>=1300 && document.body.clientWidth<1400){
+      koef=1.42;
+    }
+    else if(document.body.clientWidth>=1200 && document.body.clientWidth<1300){
+      koef=1.28;
+    }
+    else if(document.body.clientWidth>=1050 && document.body.clientWidth<1200){
+      koef=1.1;
+    }
+
+    var dev=document.querySelector('#lastPageRightPannel').offsetWidth/document.body.clientWidth*koef;
+    ctx.scale(dev,dev);
+    ctx.drawImage(img,0,20);
+
+
+    ctx.font='56px Caveat';
+    ctx.fillStyle='#534875';
+    ctx.textAlign="center"; 
+    ctx.fillText("Никита Пищуленок", 395, 290); 
+     
+
+  
+  	btnSave.addEventListener('click', function(){
+
+  		const dataURI=canvas.toDataURL("image/png");
+  		imgConverted.src=dataURI;
+  	});
+
+  	btnDwd.addEventListener('click', function(){
+      btnSave.click();
+  		if(window.navigator.msSaveBlob){
+  			window.navigator.msSaveBlob(canvas.msToBlob(), 'sertificate.png');
+  		}
+  		else{
+  			const a=document.createElement("a");
+  			document.body.appendChild(a);
+  			a.href=canvas.toDataURL();
+  			a.download="sertificate.png";
+  			a.click();
+  			document.body.removeChild(a);
+  		}
+  		
+  	});
+  </script>
+</body>
+</html>
