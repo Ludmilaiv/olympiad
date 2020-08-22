@@ -23,48 +23,40 @@ class Herro {
 
 
     // массив с начальными значениями точки старта
-    this.startPosition=[2,12];
+    this.startPosition=[1,10];
 
     // массив со значениями точки финиша
-    this.finishPosition=[11,2];
+    this.finishPosition=[11,10];
 
     // Вес детали
     this.inBackpack=0;
 
-     
+     this.tracks = [
+        {begin : [1,10], leng: 2, direct: 0},
+        {begin : [2,10], leng: 9, direct: 1},
+        {begin : [2,2], leng: 6, direct: 0},
+        {begin : [7,4], leng: 3, direct: 1},
+        {begin : [7,4], leng: 3, direct: 0},
+        {begin : [9,10], leng: 7, direct: 1},
+        {begin : [9,10], leng: 3, direct: 0}
+    ]
 
     // Наша карта 1-стена, 0-дорога
     this.map = [
-      [0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1],
-      [0, 3, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0],
-      [0, 1, 4, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 5, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 3, 6, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0],
-      [0, 14, 9, 8, 7, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
-      [0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1],
-      [0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1]
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+      [1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+      [1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1],
+      [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+      [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+      [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+      [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+      [1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+      [1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ];
-
-    function createTrack(array){
-    	let res=[];
-    	for(let i=0; i<array.length; i++){
-    		for(let j=0; j<array.length; j++){
-    			if(array[i][j]>1){
-    				res.push({begin : [j,i], leng: 1, direct: 0});
-    			}
-    		}
-    	}
-    	return res;
-    }
-    this.tracks=createTrack(this.map);
-    // console.log(a);
 
     this.isShowedHint=0; //Была ли подсказка уже показана. 1-да, 0 нет, -1 подсказки нет на уровне
 
@@ -79,8 +71,8 @@ class Herro {
     this.timeOuts = []; //здесь будем хранить таймауты для каждого отображения героя
 
     this.h = document.querySelector("#herro"); //Наш персонаж
-    this.h.style.width='45px';
-    this.h.style.height='45px';
+    // this.h.style.width='45px';
+    // this.h.style.height='45px';
   };
   //Сброс параметров
   reset() {
@@ -99,11 +91,13 @@ class Herro {
   //соответствующую его координатам
   show(myX,myY,myBackpack) {
 
+
     // this.h.style.opacity = 1;
-    if (this.map[myY][myX] !== 1) { //проверяю наличие дороги по карте
+    if (this.map[myY][myX] != 1) { //проверяю наличие дороги по карте
       this.h.style.left = myX * this.delta + "px";
       this.h.style.top = myY * this.delta  + "px";
       console.log(myBackpack);
+      document.getElementById('weightOfDetail').innerHTML=myBackpack;
       //Проверяем, не достиг ли герой цели
      if (myX == this.finishPosition[0] &&  myY== this.finishPosition[1]) {
        // this.h.style.opacity = 0;
@@ -127,35 +121,35 @@ class Herro {
   
     switch(op){
       case 'add':
-      	elem=document.createElement('div');
-      	elem.className = "scoreAnim add";
-      	elem.innerHTML = "+3";
-      	document.getElementById('score').append(elem);
-      	
-      	window.setTimeout(function() {
+        elem=document.createElement('div');
+        elem.className = "scoreAnim add";
+        elem.innerHTML = "+3";
+        document.getElementById('score').append(elem);
+        
+        window.setTimeout(function() {
             elem.classList.add("showBonus")
         }, 100)
 
 
-      	this.score+=val;
-      	elem.classList.remove("showBonus");
-      	setTimeout(() => elem.remove(), 2000);
+        this.score+=val;
+        elem.classList.remove("showBonus");
+        setTimeout(() => elem.remove(), 2000);
         break;
       
       case 'sub':
         elem=document.createElement('div');
-      	elem.className = "scoreAnim sub";
-      	elem.innerHTML = "-1";
-      	document.getElementById('score').append(elem);
-      	
-      	window.setTimeout(function() {
+        elem.className = "scoreAnim sub";
+        elem.innerHTML = "-1";
+        document.getElementById('score').append(elem);
+        
+        window.setTimeout(function() {
             elem.classList.add("showBonus")
         }, 100)
 
 
-      	this.score-=val;
-      	elem.classList.remove("showBonus");
-      	setTimeout(() => elem.remove(), 2000);
+        this.score-=val;
+        elem.classList.remove("showBonus");
+        setTimeout(() => elem.remove(), 2000);
         break;
         break;
     }
@@ -236,10 +230,11 @@ class Herro {
 
   // Определяем какой сейчас уровень и делаем подготовку для следующего
   newLevel=()=>{
-  	// console.log('овый уровень');
-    // this.h.style.opacity = 1;
+    
+    if(this.isShowedHint==-1){
+      document.getElementById('hint').style.display='none'; 
+    }
 
-    (this.isShowedHint==-1) ? document.getElementById('hint').style.display='none' : document.getElementById('hint').style.display='block'; 
     if (this.level<10){
       this.level++;
     }
@@ -252,21 +247,15 @@ class Herro {
       let rndValue=0;
       if (elem.direct == 0) {
         track.style.height = this.delta + "px";
-        track.style.width = this.delta + "px";
+        track.style.width = this.delta * elem.leng + "px";
         track.style.left = this.delta * elem.begin[0] + "px";
         track.style.top = this.delta * elem.begin[1] + "px";
-        track.style.padding = "0px";
-        track.style.background = "url('../images/asteroid.png')";
-        rndValue=Math.floor(Math.random() * Math.floor(180));
-        track.style.transform = 'rotate(' + rndValue + 'deg)';
+      } else {
+        track.style.width = this.delta + "px";
+        track.style.height = this.delta * elem.leng + "px";
+        track.style.left = this.delta * elem.begin[0] + "px";
+        track.style.top = this.delta * elem.begin[1] - this.delta * elem.leng + this.delta + "px";
       }
-      // не актуально для карт, где генерируем автоматом лабиринт
-      // } else {
-      //   track.style.width = this.delta + "px";
-      //   track.style.height = this.delta * elem.leng + "px";
-      //   track.style.left = this.delta * elem.begin[0] + "px";
-      //   track.style.top = this.delta * elem.begin[1] - this.delta * elem.leng + this.delta + "px";
-      // }
       document.querySelector("#showGame").append(track);
     })
     
@@ -290,8 +279,8 @@ class Herro {
     document.querySelector('#exit').style.background= "url("+ this.finishImageName+") no-repeat";
     document.querySelector('#exit').style.left = this.finishPosition[0] * this.delta + "px";
     document.querySelector('#exit').style.top = this.finishPosition[1] * this.delta + "px";
-    document.querySelector('#exit').style.width = "48px";
-    document.querySelector('#exit').style.height = "48px";
+    // document.querySelector('#exit').style.width = "48px";
+    // document.querySelector('#exit').style.height = "48px";
   };
 
 
