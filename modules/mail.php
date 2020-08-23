@@ -11,6 +11,9 @@ $mail->SMTPAuth = true;
 $mail->Username = 'itgenby@gmail.com';
 $mail->Password = '1Itgeneration1';
 $mail->SMTPSecure = 'tls';
+$mail->SMTPAutoTLS = false;
+$mail->SMTPKeepAlive = true;   
+$mail->Mailer = “smtp”;
 $mail->Port = 587;
 
 $mail->CharSet = 'UTF-8';
