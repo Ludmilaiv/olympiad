@@ -14,30 +14,69 @@
     <span class="head">Принять участие</span>
     <div class="group">
       <span class="title">Имя и фамилия участника</span>
-      <input type="text" name='name' placeholder="Константин Константинопольский">
+      <input type="text" name='name' id="name" placeholder="Константин Константинопольский" required>
     </div>
 
     <div class="group">
       <span class="title">Возраст</span>
-      <input type="number" min='6' max="17" step="1" name='age' placeholder="Сколько лет участнику?" onkeydown="this.value = this.value.replace(/[^0-9\.]/g, '');">
+      <input type="number" min='6' max="17" step="1" name='age' id="age" placeholder="Сколько лет участнику?" onkeydown="this.value = this.value.replace(/[^0-9\.]/g, '');" required>
     </div>
 
     <div class="group">
       <span class="title">Имя и фамилиия родителя</span>
-      <input type="text" name='parent' placeholder="Как зовут родителя?">
+      <input type="text" name='parent' id="parent" placeholder="Мария Константинопольская" required>
     </div>
 
     <div class="group">
       <span class="title">Телефон родителя</span>
-      <input type="text" name='phone' placeholder="80291112333">
+      <input type="text" name='phone' id="phone" placeholder="80291112333" required>
     </div>
 
      <div class="group">
       <span class="title">Email родителя</span>
-      <input type="text" name='email' placeholder="myMail@gmail.com">
+      <input type="text" name='email' id="email" placeholder="myMail@gmail.com" required>
     </div>
 
     <input type="submit" value="Принять участие бесплатно" id="sendForm">
   </form>
+
+  <script src="plugins/validator.js"></script>
+  <script>
+    const form = document.getElementById("reg");
+  
+    const valid = new Validator ({	
+        selector: "#reg",
+        pattern: {
+          text: /^[а-яА-ЯёЁa-zA-Z\s]+$/,
+          age: /^[0-9]+$/,
+          phone: /^\+*[0-9]{8,15}$/
+        },
+        method: {
+          name: [
+            ["noEmpty"],
+            ["pattern", "text"]
+          ],
+          age: [
+            ["pattern", "age"]
+          ],
+          parent: [
+            ["noEmpty"],
+            ["pattern", "text"]
+          ],
+          phone: [
+            ["noEmpty"],
+            ["pattern", "phone"]
+          ],
+          email: [
+            ["noEmpty"],
+            ["pattern", "email"]
+          ]
+        },
+        XMLRequest: false
+      });
+    valid.init();
+  
+  </script>
+
 </body>
 </html>
