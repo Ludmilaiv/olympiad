@@ -199,22 +199,24 @@ class Herro {
   //функция, определяющая, свободен ли путь в заданном направлении
   isFree(dir) {
     const x = this.x, y = this.y;
-    let wall;
+    let free = true;
+    let place;
     switch(dir) {
       case "right":
-        wall = this.map[y][x+1];
+        place = this.map[y][x+1];
         break;
       case "left":
-        wall = this.map[y][x-1];
+        place = this.map[y][x-1];
         break;
       case "top":
-        wall = this.map[y-1][x];
+        place = this.map[y-1][x];
         break;
       case "down":
-        wall = this.map[y+1][x];
+        place = this.map[y+1][x];
         break;
     }
-    return !wall;
+    if (place === 1) free = false;
+    return free;
   };
 
   //определяет, совпадают ли текущие координаты с целью 
