@@ -26,7 +26,11 @@
 
   		case '5':
   			require "modules/quest-page5.html";
-  			break;
+				break;
+				
+			case '6':
+				require "modules/quest-page6.html";
+				break;	
 
       case '7':
         require "modules/quest-page7.html";
