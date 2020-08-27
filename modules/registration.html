@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="leftWing"></div>
-  <a href="https://itgen.io/olimp-test" class="btn btnBack" >Вернуться на сайт</a>
+  <a href="https://itgen.io/olympiad" class="btn btnBack" >Вернуться на сайт</a>
   <form action="/" method="post" id="reg">
     <span class="head">Принять участие</span>
     <div class="group">
@@ -28,7 +28,7 @@
 
     <div class="group">
       <span class="title">Телефон родителя</span>
-      <input type="text" name='phone' id="phone" placeholder="+70291112333" onkeydown="this.value = this.value.replace(/[^0-9\+]/g, '');" required>
+      <input type="text" name='phone' id="phone" placeholder="+37517291112333" onkeydown="this.value = this.value.replace(/[^0-9\+]/g, '');" required>
     </div>
 
      <div class="group">
@@ -48,7 +48,7 @@
         pattern: {
           text: /^[а-яА-ЯёЁa-zA-Z\s]+$/,
           age: /^[0-9]+$/,
-          phone: /^\+*[0-9]{8,15}$/
+          phone: /^\+{1}[0-9]{8,15}$/
         },
         method: {
           name: [
