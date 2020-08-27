@@ -19,6 +19,8 @@ $email = $_POST['email'];
 //обрабатываем логин и пароль чтобы привести их к безопасному виду. 
 $name = stripslashes($name);
 $name = htmlspecialchars($name);
+$name = strtolower($name);
+$name = ucwords($name);
 $parent = stripslashes($parent);
 $parent = htmlspecialchars($parent);
 $phone = stripslashes($phone);
