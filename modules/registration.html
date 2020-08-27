@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -46,7 +46,7 @@
     const valid = new Validator ({	
         selector: "#reg",
         pattern: {
-          text: /^[а-яА-ЯёЁa-zA-Z\s]+$/,
+          text: /^[а-яА-ЯёЁa-zA-Z\-\s]+$/,
           age: /^[0-9]+$/,
           phone: /^\+{1}[0-9]{8,15}$/
         },
