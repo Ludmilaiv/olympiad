@@ -28,7 +28,7 @@
 
     <div class="group">
       <span class="title">Телефон родителя</span>
-      <input type="text" name='phone' id="phone" placeholder="80291112333" required>
+      <input type="text" name='phone' id="phone" placeholder="+70291112333" onkeydown="this.value = this.value.replace(/[^0-9\+]/g, '');" required>
     </div>
 
      <div class="group">
