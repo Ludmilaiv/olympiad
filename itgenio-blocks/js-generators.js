@@ -100,15 +100,15 @@ Blockly.JavaScript['while_direction_free'] = function(block) {
 
   var code = `
 
+  var limitLoop = 1000;
 
-
-  while (gameHerro.isFree("${dropdown_direction}")) {
+  while (gameHerro.isFree("${dropdown_direction}") && limitLoop > 0) {
 
     if (gameHerro.isGoal()) break;
 
     ${statements_loop_body}
 
-
+    limitLoop--;
 
   };\n`;
 
@@ -151,7 +151,7 @@ Blockly.JavaScript['while_not_goal'] = function(block) {
 
 
       ${statements_loop_body}
-      
+
 
     }
     
