@@ -1,4 +1,4 @@
-"use strict"
+﻿"use strict"
 
 
 
@@ -95,7 +95,7 @@ class Herro {
 
     } else {
       //останавливаем все таймауты, чтобы остановить следующие шаги героя
-      console.log(this.timeOuts);
+      
       this.timeOuts.forEach(function(element){
         clearTimeout(element);
       });  

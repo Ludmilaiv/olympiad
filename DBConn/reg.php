@@ -19,12 +19,12 @@ $email = $_POST['email'];
 //обрабатываем логин и пароль чтобы привести их к безопасному виду. 
 $name = stripslashes($name);
 $name = htmlspecialchars($name);
-$name = strtolower($name);
-$name = ucwords($name);
+$name = mb_strtolower($name);
+$name = mb_convert_case($name, MB_CASE_TITLE, 'UTF-8');
 $parent = stripslashes($parent);
 $parent = htmlspecialchars($parent);
-$parent = strtolower($parent);
-$parent = ucwords($parent);
+$parent = mb_strtolower($parent);
+$parent = mb_convert_case($parent, MB_CASE_TITLE, 'UTF-8');
 $phone = stripslashes($phone);
 $phone = htmlspecialchars($phone);
 $email = stripslashes($email);
@@ -43,7 +43,7 @@ $user  = R::findOne( 'users', 'adress = ?', [$adress]);
 while (isset($user)) 
 {
 	$adress = substr(str_shuffle($permitted_chars), 0, 16);
-	$user  = R::findOne( 'users', 'adress = ?', [$address]);
+	$user  = R::findOne( 'users', 'address = ?', [$address]);
 }
 
 //помещаем данные в новую запись
@@ -54,6 +54,7 @@ $user->parent = $parent;
 $user->phone = $phone;
 $user->email = $email;
 $user->address = $address;
+$user->date_of_reg = date('Y-m-d');
 // Сохраняем объект в БД
 R::store($user);
 //Проверим успешность регистрации 

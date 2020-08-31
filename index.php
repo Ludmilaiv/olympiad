@@ -1,4 +1,10 @@
 <?php
+    if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == ""){
+    $redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    header("HTTP/1.1 301 Moved Permanently");
+    header("Location: $redirect");
+}
+
 	session_start();
 	
 	if (isset($_POST['name'])) {
@@ -28,13 +34,17 @@
   			require "modules/quest-page5.html";
 				break;
 				
-			case '6':
-				require "modules/quest-page6.html";
-				break;	
+		case '6':
+			require "modules/quest-page6.html";
+			break;	
 
-      case '7':
-        require "modules/quest-page7.html";
-        break;
+	    case '7':
+	        require "modules/quest-page7.html";
+	        break;
+
+	    case '8':
+	        require "modules/final.html";
+	        break;
 
   		case '9':
   			require "modules/finish.html";
