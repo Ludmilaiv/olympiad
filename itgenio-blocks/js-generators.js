@@ -276,7 +276,7 @@ Blockly.JavaScript['while_x'] = function(block) {
 
     var limitLoop = 1000;
 
-    while (gameHerro.x*50 ${dropdown_comparing} ${text_value} && !gameHerro.isGoal()) {
+    while (gameHerro.x*50 ${dropdown_comparing} ${text_value} && !gameHerro.isGoal() && limitLoop > 0) {
 
       limitLoop--;
 
@@ -318,7 +318,7 @@ Blockly.JavaScript['while_y'] = function(block) {
 
     while ((gameHerro.map.length - 1 - gameHerro.y) * 50 ${dropdown_comparing} ${text_value}
 
-    && !gameHerro.isGoal()) {
+    && !gameHerro.isGoal() && limitLoop > 0) {
 
     limitLoop--;
 
