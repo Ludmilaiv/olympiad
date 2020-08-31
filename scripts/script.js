@@ -54,8 +54,7 @@ class Herro {
 
     // this.x = 2;
     // this.y = 8;
-    this.delta = Math.floor(document.querySelector("#showGame").offsetWidth / this.map.length);
-   // this.delta = 55; //шаг персонажа в пикселях
+    this.delta = Math.floor(document.querySelector("#showGame").offsetWidth / this.map.length); //шаг персонажа в пикселях
     this.delay = 500; //задержка в мс между шагами персонажа
     this.funcDelay = 500 //ожидание до выполнения очередной функции 
     //(для каждой последующей функции это ожидание 
@@ -77,6 +76,7 @@ class Herro {
     this.y = 7;
     this.timeOuts = [];
     this.show(this.x, this.y);
+    document.querySelector("#start").disabled = false;
   }
   //Метод для перестановки персонажа в позицию, 
   //соответствующую его координатам
@@ -90,7 +90,11 @@ class Herro {
      if (myX == this.finishPosition[0] &&  myY== this.finishPosition[1]) {
        // this.h.style.opacity = 0;
        // this.newLevel();
-       this.changeScore('add', 3);
+       //останавливаем все таймауты, чтобы остановить следующие шаги героя
+        this.timeOuts.forEach(function(element){
+          clearTimeout(element);
+        });  
+        this.changeScore('add', 3);
      }
 
     } else {

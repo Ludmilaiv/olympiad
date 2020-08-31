@@ -217,7 +217,7 @@ class Herro {
 
     this.show(this.x, this.y, this.inBackpack);
 
-
+    document.querySelector("#start").disabled = false;
 
   }
 
@@ -257,16 +257,15 @@ class Herro {
 
         // Проверяю все ли детали собраны
 
-          this.changeScore('add', 3);     
-
           this.timeOuts.forEach(function(element){
 
             clearTimeout(element);
     
           });  
-    
-          document.querySelector("#start").disabled = false; 
 
+          this.changeScore('add', 3);     
+
+          
         }
 
 

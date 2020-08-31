@@ -151,10 +151,10 @@ Blockly.JavaScript['while_not_goal'] = function(block) {
 
 
       ${statements_loop_body}
-
-
+      
 
     }
+    
 
   })();\n`;
 

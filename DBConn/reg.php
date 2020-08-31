@@ -39,7 +39,7 @@ $email = trim($email);
 
 $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 $address = substr(str_shuffle($permitted_chars), 0, 16);
-$user  = R::findOne( 'users', 'adress = ?', [$adress]);
+$user  = R::findOne( 'users', 'adress = ?', [$address]);
 while (isset($user)) 
 {
 	$adress = substr(str_shuffle($permitted_chars), 0, 16);
