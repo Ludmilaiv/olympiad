@@ -186,7 +186,7 @@ class Herro {
 
     this.show(this.x, this.y);
 
-    
+    document.querySelector("#start").disabled = false;
 
   }
 
@@ -202,6 +202,8 @@ class Herro {
 
     if (this.map[myY][myX] == 0) { //проверяю наличие дороги по карте
 
+      console.log(this.delta);
+
       this.h.style.left = myX * this.delta + "px";
 
       this.h.style.top = myY * this.delta  + "px";
@@ -213,6 +215,12 @@ class Herro {
        // this.h.style.opacity = 0;
 
        // this.newLevel();
+
+       this.timeOuts.forEach(function(element){
+
+        clearTimeout(element);
+
+      }); 
 
        this.changeScore('add', 3);
 
