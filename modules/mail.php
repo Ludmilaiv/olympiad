@@ -9,7 +9,7 @@ $mailbody = '<table border="0" cellpadding="0" cellspacing="0" style="margin:aut
             <span style="font-size: 14px; line-height: 16px;">Здравствуй, '.$user->name.'!<br>
               Чтобы перейти к олимпиаде, нажми на кнопку
             </span>
-            <a href="http://quest.itgen.io/?u='.$user->address.'" style="display: block; width: fit-content; margin: 25px auto 0; padding:8px 32px; background: #FFDC40; box-shadow: -2px 4px 0px #DB994B, 2px 4px 0px #DB994B; border-radius: 42px; text-decoration: none; font-size: 16px; line-height: 22px; color: #323557;">Перейти к олимпиаде</a>
+            <a href="https://quest.itgen.io/?u='.$user->address.'" style="display: block; width: fit-content; margin: 25px auto 0; padding:8px 32px; background: #FFDC40; box-shadow: -2px 4px 0px #DB994B, 2px 4px 0px #DB994B; border-radius: 42px; text-decoration: none; font-size: 16px; line-height: 22px; color: #323557;">Перейти к олимпиаде</a>
           </td>
         </tr>
       </table>
@@ -74,7 +74,7 @@ $mail->AltBody = 'Здравствуй, '.$user->name.'!';
 
 $mail->AltBody .= 'Чтобы перейти к олимпиаде, перейди по ссылке';
 
-$mail->AltBody .= 'http://quest.itgen.io/?u='.$user->address;
+$mail->AltBody .= 'https://quest.itgen.io/?u='.$user->address;
 
 
 
