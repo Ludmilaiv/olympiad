@@ -17,7 +17,7 @@
 	<div class="page-content">
 		<div class="top-panel">
 			<div class="line-block">
-		  		<input type="hidden" id='curLevel' value='1'> <!-- Текущий уровень -->
+		  		<input type="hidden" id='curLevel' value='4'> <!-- Текущий уровень -->
 		  		<a href="#" class="js-open-modal show-mission btn" data-modal="1">Миссия</a>
 		  		<a href="#" class="js-open-modal show-hint" id='hint' data-modal="2" title="Подсказка стоит 1 геник!">Подсказка &nbsp;<img src="../images/genic.png" alt="">&nbsp; -1</a>
 		  	</div>
@@ -25,10 +25,10 @@
 		  	<div id="levels" class="line-block">
 			  	<ul>
 			  		<li>1</li>
-			  		<li class="active">2</li>
+			  		<li>2</li>
 			  		<li>3</li>
 			  		<li>4</li>
-			  		<li>5</li>
+			  		<li class="active">5</li>
 			  		<li>6</li>
 			  		<li>7</li>
 			  		<li>8</li>
@@ -37,7 +37,7 @@
 		  	</div>
 
 		  	<div id="score" class="line-block">
-			  	<div class="value">3</div>
+			  	<div class="value"><?php echo $results->points ?></div>
 			  	<img src="../images/genic.png">
 			</div>
 
@@ -89,15 +89,17 @@
 	      <block type="go_down"></block>
 	    </category>
 	    <category name="Управление">
-	      <block type="while_direction_free"></block>
+	      <!-- <block type="while_direction_free"></block> -->
 	      <block type="while_not_goal"></block>
-	      <block type="if_direction_free"></block>
-	      <block type="if_direction_free_else"></block>
+	      <!-- <block type="if_direction_free"></block> -->
+	      <!-- <block type="if_direction_free_else"></block> -->
+	      <block type="while_x"></block>
+	      <block type="while_y"></block>
 	    </category>
 	    
 	  </xml>
 	</div>
 
-  <script src="scripts/script2.js"></script>
+  <script src="scripts/script5.js"></script>
 </body>
 </html>

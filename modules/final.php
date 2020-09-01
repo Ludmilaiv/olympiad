@@ -11,7 +11,7 @@
 	<canvas id="firework"></canvas>
 
 	<div id="congratulation">Поздравляем!!!</div>
-	
+	<div id="score" style="display:none"><?php echo $results->points ?></div>
 		<!-- до прохождения -->
 	  <div class="modal modal-final" id="modal-final" data-modal="3">
 	    <div class="content">

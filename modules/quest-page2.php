@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Олимпиада в Айтигенио 2020</title>
   <link rel="stylesheet" href="styles/style.css">
   <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
@@ -18,7 +17,7 @@
 	<div class="page-content">
 		<div class="top-panel">
 			<div class="line-block">
-		  		<input type="hidden" id='curLevel' value='6'> <!-- Текущий уровень -->
+		  		<input type="hidden" id='curLevel' value='1'> <!-- Текущий уровень -->
 		  		<a href="#" class="js-open-modal show-mission btn" data-modal="1">Миссия</a>
 		  		<a href="#" class="js-open-modal show-hint" id='hint' data-modal="2" title="Подсказка стоит 1 геник!">Подсказка &nbsp;<img src="../images/genic.png" alt="">&nbsp; -1</a>
 		  	</div>
@@ -26,19 +25,19 @@
 		  	<div id="levels" class="line-block">
 			  	<ul>
 			  		<li>1</li>
-			  		<li>2</li>
+			  		<li class="active">2</li>
 			  		<li>3</li>
 			  		<li>4</li>
 			  		<li>5</li>
 			  		<li>6</li>
-			  		<li class="active">7</li>
+			  		<li>7</li>
 			  		<li>8</li>
 			  		<li>9</li>
 			  	</ul>
 		  	</div>
 
 		  	<div id="score" class="line-block">
-			  	<div class="value">21</div>
+			  	<div class="value"><?php echo $results->points ?></div>
 			  	<img src="../images/genic.png">
 			</div>
 
@@ -72,20 +71,9 @@
 	    		<button id="reset" class="btn">Вернуть персонажа</button>
 	    	</div>
 
-	    	
-
 	    	<div id="showGame">
 	    	    <div id="herro"></div>
-				<div id="exit"></div> 
-				
-				<div class="resultBox">
-					<div class="backpack">
-						<div class="thotBlock">
-							<strong>Вес:&nbsp;</strong><span id="weightOfDetail">0</span>
-						</div>
-					</div>
-	    			
-	    		</div>  
+				<div id="exit"></div>   
 		    </div>
 	    </div>
 		
@@ -95,27 +83,21 @@
 	  <!--Создаём панель инструментов-->
 	  <xml id="toolbox" style="display: none">
 	    <category name="Движение">
-	      <!-- <block type="go_left"></block> -->
+	      <block type="go_left"></block>
 	      <block type="go_right"></block>
-	      <!-- <block type="go_up"></block> -->
+	      <block type="go_up"></block>
 	      <block type="go_down"></block>
 	    </category>
 	    <category name="Управление">
-	      <!-- <block type="while_direction_free"></block> -->
+	      <block type="while_direction_free"></block>
 	      <block type="while_not_goal"></block>
 	      <block type="if_direction_free"></block>
-	      <!-- <block type="if_direction_free_else"></block> -->
-	      <!-- <block type="while_x"></block> -->
-	      <!-- <block type="while_y"></block> -->
-	      <block type="if_part_weight"></block>
-	      <block type="in_a_backpack"></block>
-	      <block type="on_the_floor"></block>
-	      <block type="replace_the_part"></block>
+	      <block type="if_direction_free_else"></block>
 	    </category>
 	    
 	  </xml>
 	</div>
 
-  <script src="scripts/script7.js"></script>
+  <script src="scripts/script2.js"></script>
 </body>
 </html>

@@ -56,15 +56,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 parentModal.classList.remove('active');
                 overlay.classList.remove('active');
               });
+              
               break;
             case '2':
               modalElem.querySelector('div.content').innerHTML=levelHint[0] + levelHint[lvl];
               break;
           }
          
+          modalElem.classList.add('active');
+          overlay.classList.add('active');
          
-         modalElem.classList.add('active');
-         overlay.classList.add('active');
 
          
 

@@ -27,11 +27,11 @@ $width = 784;
 $height = 496;
 $name = $user->name;
 //определяем, где будет начинаться строка из рассчёта 7 пикс. на букву
-$x = $width / 2 - strlen($name) * 7 / 2;
+$x = $width / 2 - strlen($name) * 12 / 2;
 // Создание изображения 300x100
 $im = imagecreatetruecolor($width, $height);
-$red = imagecolorallocate($im, 0xFF, 0x00, 0x00);
-$black = imagecolorallocate($im, 0x00, 0x00, 0x00);
+$text_color = imagecolorallocate($im, 0x53, 0x48, 0x75);
+//$text_color = imagecolorallocate($im, 0x53, 0x48, 0x75);
 
 $im = ImageCreateFromPNG('../images/sertificate.png');
 
@@ -42,7 +42,7 @@ $im = ImageCreateFromPNG('../images/sertificate.png');
 $font_file = '../fonts/Caveat-Regular.ttf';
 
 // Рисуем текст 'PHP Manual' шрифтом 13го размера
-imagefttext($im, 25, 0, $x, 250, $black, $font_file, $name);
+imagefttext($im, 42.164, 0, $x, 270, $text_color, $font_file, $name);
 
 // Вывод изображения
 header('Content-Type: image/png');

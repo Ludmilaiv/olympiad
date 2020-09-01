@@ -38,11 +38,11 @@ if (!isset($results)) {
 }
 
 if ($results->finish_time > 0) 
-  require('modules/finish.html');
+  require('modules/finish.php');
 else if ($results->level < 8) 
-  require('modules/quest-page'.$results->level.'.html');
+  require('modules/quest-page'.$results->level.'.php');
 else 
-  require('modules/final.html');
+  require('modules/final.php');
 
 
 ?>
