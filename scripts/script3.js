@@ -16,7 +16,7 @@ class Herro {
 
     // текущий уровень
 
-    this.level=2;
+    this.level=3;
 
 
 
@@ -144,9 +144,7 @@ class Herro {
 
     this.h = document.querySelector("#herro"); //Наш персонаж
 
-    // this.h.style.width='38px';
-
-    // this.h.style.height='38px';
+    this.loopLimit = 1000; //защита от бесконечных циклов
 
   };
 
@@ -172,6 +170,8 @@ class Herro {
 
     this.show(this.x, this.y);
 
+    this.loopLimit = 1000; //защита от бесконечных циклов
+
     document.querySelector("#start").disabled = false;
 
   }
@@ -181,8 +181,6 @@ class Herro {
   //соответствующую его координатам
 
   show(myX,myY) {
-
-
 
     // this.h.style.opacity = 1;
 
@@ -207,6 +205,28 @@ class Herro {
       });  
 
        this.changeScore('add', 3);
+
+       const complite = () => {
+        let xhr = new XMLHttpRequest();
+          const locationArray = location.href.split('?');
+          xhr.open("POST", 'DBConn/save-results.php?' + locationArray[locationArray.length - 1], true);
+          xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xhr.send(`level=${++this.level}`);
+          xhr.onload = function (e) 
+              {
+              if (xhr.status != 200) 
+              {
+                  alert('Ошибка передачи данных. Проверьте интернет-подключение'); 
+              } else if (xhr.responseText == "err") {
+                  document.write("Что-то пошло не так");
+              } else {  
+                  localStorage.removeItem('blocks');
+                  location.href = location.href;
+              }
+          }
+      }
+
+      setTimeout(complite, 1000);
 
      }
 
@@ -442,8 +462,6 @@ class Herro {
 
     if (this.x == this.finishPosition[0] &&  this.y== this.finishPosition[1]) {
 
-      console.log('Completed');
-
       return true;
 
 
@@ -462,23 +480,10 @@ class Herro {
 
   newLevel=()=>{
 
-  	// console.log('овый уровень');
-
-    // this.h.style.opacity = 1;
-
-
 
     if(this.isShowedHint==-1){
 
       document.getElementById('hint').style.display='none'; 
-
-    }
-
-
-
-    if (this.level<10){
-
-      this.level++;
 
     }
 

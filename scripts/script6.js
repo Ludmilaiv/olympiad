@@ -16,7 +16,7 @@ class Herro {
 
     // текущий уровень
 
-    this.level=5;
+    this.level=6;
 
 
 
@@ -151,6 +151,8 @@ class Herro {
 
     this.h = document.querySelector("#herro"); //Наш персонаж
 
+    this.loopLimit = 1000; //защита от бесконечных циклов
+
   };
 
 
@@ -217,6 +219,8 @@ class Herro {
 
     this.show(this.x, this.y, this.inBackpack);
 
+    this.loopLimit = 1000; //защита от бесконечных циклов
+
     document.querySelector("#start").disabled = false;
 
   }
@@ -263,7 +267,29 @@ class Herro {
     
           });  
 
-          this.changeScore('add', 3);     
+          this.changeScore('add', 3);   
+          
+          const complite = () => {
+            let xhr = new XMLHttpRequest();
+              const locationArray = location.href.split('?');
+              xhr.open("POST", 'DBConn/save-results.php?' + locationArray[locationArray.length - 1], true);
+              xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+              xhr.send(`level=${++this.level}`);
+              xhr.onload = function (e) 
+                  {
+                  if (xhr.status != 200) 
+                  {
+                      alert('Ошибка передачи данных. Проверьте интернет-подключение'); 
+                  } else if (xhr.responseText == "err") {
+                      document.write("Что-то пошло не так");
+                  } else {  
+                      localStorage.removeItem('blocks');
+                      location.href = location.href;
+                  }
+              }
+          }
+    
+          setTimeout(complite, 1000);
 
           
         }
@@ -512,13 +538,6 @@ class Herro {
 
     }
 
-
-
-    if (this.level<10){
-
-      this.level++;
-
-    }
 
     document.getElementById('curLevel').value=this.level;
 

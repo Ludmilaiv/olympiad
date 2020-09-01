@@ -1,4 +1,23 @@
-﻿<!DOCTYPE html>
+﻿<?php
+require 'DBConn/libs/rb-mysql.php';
+//связываемся с БД
+require 'DBConn/dbconn.php';
+
+if (!R::testConnection())
+//если не связались с бд, то выводим ошибку и перезагружаем страничку
+{
+	echo 'Что-то пошло не так';
+	exit;
+}
+$user = R::findOne( 'users', 'address = ?', [$_GET['u']]);
+if (!isset($user)) 
+{
+    echo "<h2>Указанного Вами адреса не существует</h2>";
+    exit;
+}
+?>
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -11,7 +30,8 @@
 	<div class="w800 lastPagepage-content">
 		<div class="top-panel lastPagetop-panel">
 			<div class="line-block">
-		  	<span class="lastPageTitle"><img src="../images/student.png" alt="">&nbsp;Никита Пищуленок</span>
+		  	<span class="lastPageTitle"><img src="../images/student.png" alt="">&nbsp;
+		  	<?php echo $user->name ?></span>
 		  </div>
 		</div>
 		

@@ -1,13 +1,11 @@
 ﻿"use strict"
 
-
-
 //Описываем класс для нашего персонажа
 class Herro {
 
   constructor() {
     // текущий уровень (до перехода на новый)
-    this.level=0;
+    this.level=1;
 
     //текущий счет
     this.score=0;
@@ -64,6 +62,8 @@ class Herro {
     this.timeOuts = []; //здесь будем хранить таймауты для каждого отображения героя
 
     this.h = document.querySelector("#herro"); //Наш персонаж
+
+    this.loopLimit = 1000; //защита от бесконечных циклов
   };
   //Сброс параметров
   reset() {
@@ -76,6 +76,7 @@ class Herro {
     this.y = 7;
     this.timeOuts = [];
     this.show(this.x, this.y);
+    this.loopLimit = 1000;
     document.querySelector("#start").disabled = false;
   }
   //Метод для перестановки персонажа в позицию, 
@@ -95,6 +96,29 @@ class Herro {
           clearTimeout(element);
         });  
         this.changeScore('add', 3);
+
+        const complite = () => {
+          let xhr = new XMLHttpRequest();
+            const locationArray = location.href.split('?');
+            xhr.open("POST", 'DBConn/save-results.php?' + locationArray[locationArray.length - 1], true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.send(`level=${++this.level}`);
+            xhr.onload = function (e) 
+                {
+                if (xhr.status != 200) 
+                {
+                    alert('Ошибка передачи данных. Проверьте интернет-подключение'); 
+                } else if (xhr.responseText == "err") {
+                    document.write("Что-то пошло не так");
+                } else {  
+                    localStorage.removeItem('blocks');
+                    location.href = location.href;
+                }
+            }
+        }
+
+        setTimeout(complite, 1000);
+        
      }
 
     } else {
@@ -225,9 +249,7 @@ class Herro {
     // this.h.style.opacity = 1;
 
     (this.isShowedHint==-1) ? document.getElementById('hint').style.display='none' : document.getElementById('hint').style.display='block'; 
-    if (this.level<10){
-      this.level++;
-    }
+
     let bg_name;
 
     const levelTracks = this.tracks;

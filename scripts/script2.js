@@ -16,7 +16,7 @@ class Herro {
 
     // текущий уровень
 
-    this.level=1;
+    this.level=2;
 
 
 
@@ -148,6 +148,8 @@ class Herro {
 
     this.h = document.querySelector("#herro"); //Наш персонаж
 
+    this.loopLimit = 1000; //защита от бесконечных циклов
+
   };
 
   //Сброс параметров
@@ -164,8 +166,6 @@ class Herro {
 
     this.funcDelay = 500;
 
-    console.log(this.startPosition[1]);
-
     this.x = this.startPosition[0];
 
     this.y = this.startPosition[1];
@@ -175,6 +175,8 @@ class Herro {
     this.show(this.x, this.y);
 
     document.querySelector("#start").disabled = false;
+
+    this.loopLimit = 1000;
 
   }
 
@@ -212,6 +214,28 @@ class Herro {
 
 
        this.changeScore('add', 3);
+
+       const complite = () => {
+        let xhr = new XMLHttpRequest();
+          const locationArray = location.href.split('?');
+          xhr.open("POST", 'DBConn/save-results.php?' + locationArray[locationArray.length - 1], true);
+          xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xhr.send(`level=${++this.level}`);
+          xhr.onload = function (e) 
+              {
+              if (xhr.status != 200) 
+              {
+                  alert('Ошибка передачи данных. Проверьте интернет-подключение'); 
+              } else if (xhr.responseText == "err") {
+                  document.write("Что-то пошло не так");
+              } else {  
+                  localStorage.removeItem('blocks');
+                  location.href = location.href;
+              }
+          }
+      }
+
+      setTimeout(complite, 1000);
 
 
      }
@@ -481,13 +505,6 @@ class Herro {
     }
 
 
-
-    if (this.level<10){
-
-      this.level++;
-
-    }
-
     let bg_name;
 
 
@@ -525,15 +542,6 @@ class Herro {
       document.querySelector("#showGame").append(track);
 
     })
-
-    
-
-    
-
-   
-
-    
-
 
 
     document.getElementById('curLevel').value=this.level;

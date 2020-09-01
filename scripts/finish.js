@@ -224,9 +224,27 @@ btn.addEventListener('click', function(){
       }, 1000);
       
 
-      setTimeout(function(){window.location.href = "/?play=9";}, 5000);
+      const complite = () => {
+        let xhr = new XMLHttpRequest();
+          const locationArray = location.href.split('?');
+          xhr.open("POST", 'DBConn/save-results.php?' + locationArray[locationArray.length - 1], true);
+          xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+          xhr.send(`finish`);
+          xhr.onload = function (e) 
+              {
+              if (xhr.status != 200) 
+              {
+                  alert('Ошибка передачи данных. Проверьте интернет-подключение'); 
+              } else if (xhr.responseText == "err") {
+                  document.write("Что-то пошло не так");
+              } else {  
+                  localStorage.removeItem('blocks');
+                  location.href = location.href;
+              }
+          }
+      }
 
-
+      setTimeout(complite, 5000);
       
     }, 1000);
   }
