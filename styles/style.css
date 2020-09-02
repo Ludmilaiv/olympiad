@@ -620,9 +620,9 @@ body{
 
 	margin-left: 16px;
 
-	display: flex !important;
+	/*display: flex !important;
 
-	align-items: center;
+*/	align-items: center;
 
 }
 
@@ -1078,7 +1078,7 @@ div.resultBox{
 
 
 
-#lastPageRightPannel .row{max-width: 785px;}
+
 
 
 

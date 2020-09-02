@@ -25,6 +25,7 @@ if (!isset($user))
   <title>Олимпиада в Айтигенио 2020</title>
   <link rel="stylesheet" href="styles/style.css">
   <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+  <script src="scripts/browserFilter.js"></script>
 </head>
 <body>
 	<div class="w800 lastPagepage-content">

@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Олимпиада в Айтигенио 2020</title>
   <link rel="stylesheet" href="styles/style.css">
-  <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+	<script src="scripts/browserFilter.js"></script>
   <script src="google-blockly/blockly_compressed.js"></script>
   <script src="google-blockly/blocks_compressed.js"></script>
   <script src="google-blockly/javascript_compressed.js"></script>
