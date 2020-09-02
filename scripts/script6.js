@@ -321,7 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    changeScore=function(op,val){
+    changeScore(op,val){
 
       let bonus=0;
 
@@ -532,7 +532,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Определяем какой сейчас уровень и делаем подготовку для следующего
 
-    newLevel=()=>{
+    newLevel(){
 
       
 
