@@ -26,7 +26,7 @@ if (!isset($results)) {
   $results->level = 1;
   $results->points = 0;
   $results->blocks = 0;
-  $result->hints = '[-1,0,0,0,0,0,0,-1]';
+  $results->hints = json_encode([-1,0,0,0,0,0,0,-1]);
   R::store($results);
 }
 
