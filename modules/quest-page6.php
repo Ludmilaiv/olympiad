@@ -42,6 +42,17 @@
 
 		  		<a href="#" class="js-open-modal show-hint" id='hint' data-modal="2" title="Подсказка стоит 1 геник!">Подсказка &nbsp;<img src="../images/genic.png" alt="">&nbsp; -1</a>
 
+					<div style="display:none" id="wasHint">
+						<?php 
+						 echo json_decode($results->hints)[$results->level - 1];	
+						?>
+					</div>
+					<div style="display:none" id="numberBlocks">
+						<?php 
+						 echo $results->blocks;	
+						?>
+					</div>
+
 		  	</div>
 
 

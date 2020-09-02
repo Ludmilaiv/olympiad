@@ -56,15 +56,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 parentModal.classList.remove('active');
                 overlay.classList.remove('active');
               });
-              
+              modalElem.classList.add('active');
+              overlay.classList.add('active');
               break;
             case '2':
               modalElem.querySelector('div.content').innerHTML=levelHint[0] + levelHint[lvl];
+              //Это окно сразу не показываем, так как оно должно показаться только после успешного ответа от сервера
               break;
           }
          
-          modalElem.classList.add('active');
-          overlay.classList.add('active');
+          
          
 
          

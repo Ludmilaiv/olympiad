@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
       //текущий счет
 
       this.score = +document.querySelector("#score .value").textContent;
+
+      //количество использованных блоков на предыдущих уровнях
+
+      this.numberBlocks = +document.getElementById("numberBlocks").textContent;
     
       // адрес фона текущего уровня
       this.bgImageName='';
@@ -51,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
       ];
 
-      this.isShowedHint=-1; //Была ли подсказка уже показана. 1-да, 0 нет, -1 подсказки нет на уровне
+      this.isShowedHint = +document.getElementById("wasHint").textContent; //Была ли подсказка уже показана. 1-да, 0 нет, -1 подсказки нет на уровне
 
       // this.x = 2;
       // this.y = 8;
@@ -105,7 +109,8 @@ document.addEventListener("DOMContentLoaded", () => {
               const locationArray = location.href.split('?');
               xhr.open("POST", 'DBConn/save-results.php?' + locationArray[locationArray.length - 1], true);
               xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-              xhr.send(`level=${++this.level}&points=${this.score}`);
+              const blocks = this.numberBlocks + workspace.getAllBlocks().length; 
+              xhr.send(`level=${++this.level}&points=${this.score}&blocks=${blocks}`);
               xhr.onload = function (e) 
                   {
                   if (xhr.status != 200) 
@@ -333,7 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //Загрузка из локального хранилища
   const loadBlocksLocal = function(){
     if (localStorage.getItem("blocks")) {
-      let xml_text = localStorage.getItem("blocks")
+      let xml_text = localStorage.getItem("blocks");
       let xml = Blockly.Xml.textToDom(xml_text);
       Blockly.Xml.domToWorkspace(xml, workspace);
     }

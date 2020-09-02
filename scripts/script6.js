@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       this.score = +document.querySelector("#score .value").textContent;
 
+      //количество использованных блоков на предыдущих уровнях
 
+      this.numberBlocks = +document.getElementById("numberBlocks").textContent;
 
       // адрес фона текущего уровня
 
@@ -119,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-      this.isShowedHint=0; //Была ли подсказка уже показана. 1-да, 0 нет, -1 подсказки нет на уровне
+      this.isShowedHint = +document.getElementById("wasHint").textContent; //Была ли подсказка уже показана. 1-да, 0 нет, -1 подсказки нет на уровне
 
 
 
@@ -273,7 +275,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const locationArray = location.href.split('?');
                 xhr.open("POST", 'DBConn/save-results.php?' + locationArray[locationArray.length - 1], true);
                 xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xhr.send(`level=${++this.level}&points=${this.score}`);
+                const blocks = this.numberBlocks + workspace.getAllBlocks().length; 
+                xhr.send(`level=${++this.level}&points=${this.score}&blocks=${blocks}`);
                 xhr.onload = function (e) 
                     {
                     if (xhr.status != 200) 
@@ -666,16 +669,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showHint(){
 
+    const modalElem = document.querySelector('.modal[data-modal="2"]');
+    const overlay = document.querySelector('.js-overlay-modal');
+
     if(gameHerro.isShowedHint==0){
 
       if(gameHerro.score>0){
 
-        gameHerro.isShowedHint=1;
-
-        gameHerro.changeScore('sub',1);
-
+        let xhr = new XMLHttpRequest();
+            const locationArray = location.href.split('?');
+            xhr.open("POST", 'DBConn/save-results.php?' + locationArray[locationArray.length - 1], true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.send(`hint=${gameHerro.level}&points=${gameHerro.score-1}`);
+            xhr.onload = function (e) 
+                {
+                if (xhr.status != 200) 
+                {
+                    alert('Ошибка передачи данных. Проверьте интернет-подключение'); 
+                } else if (xhr.responseText == "err") {
+                    alert("Что-то пошло не так. Попробуйте ещё раз");
+                } else {  
+                  gameHerro.isShowedHint=1;
+                  gameHerro.changeScore('sub',1);
+                  //показываем окно с подсказкой
+                  modalElem.classList.add('active');
+                  overlay.classList.add('active');
+                }
+            }
       }
 
+    } else {
+      //показываем окно с подсказкой
+      modalElem.classList.add('active');
+      overlay.classList.add('active');
     }
 
   }
