@@ -34,7 +34,10 @@
 								$time = $results->finish_time - $results->starting_time;
 								$hours = floor($time / 60 / 60);
 								$minutes = floor($time / 60) % 60;
-								echo $hours.':'.$minutes;
+								$format_h = ''; $format_m = ''; 
+        				if (floor($hours / 10) == 0) $format_h = '0';
+        				if (floor($minutes / 10) == 0) $format_m = '0';
+								echo $format_h.$hours.':'.$format_m.$minutes;
 							?>
 							</div>
     			</div>
