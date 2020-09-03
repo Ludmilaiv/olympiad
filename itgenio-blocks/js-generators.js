@@ -380,11 +380,11 @@ Blockly.JavaScript['replace_the_part'] = function(block) {
 
   var code = `
 
-  var d = gameHerro.inBackpack;
+  
 
-  gameHerro.inBackpack = gameHerro.map[gameHerro.y][gameHerro.x];
-
-  gameHerro.map[gameHerro.y][gameHerro.x] = d
+  if (gameHerro.map[gameHerro.y][gameHerro.x] > 1) {
+    gameHerro.saveDetal();
+  }
 
   ;\n`;
 

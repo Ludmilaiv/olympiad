@@ -489,6 +489,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    //сохранение детали в память
+
+    saveDetal() {
+      gameHerro.inBackpack = gameHerro.map[gameHerro.y][gameHerro.x];
+
+      const thisX = this.x, thisY = this.y, thisBackpack = this.inBackpack;
+
+      let timeout = setTimeout(() => {
+
+        this.show(thisX, thisY, thisBackpack);
+
+      }, this.funcDelay - this.delay);
+
+      this.timeOuts.push(timeout);
+    }
+
 
     //функция, определяющая, свободен ли путь в заданном направлении
 
