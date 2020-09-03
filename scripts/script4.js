@@ -288,6 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     location.href = location.href;
                 }
             }
+            setTimeout(()=>{alert('Что-то пошло не так. Проверьте интернет-подключение и перезагрузите страницу'); }, 3000);
         }
 
         setTimeout(complite, 1000);

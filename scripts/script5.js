@@ -731,6 +731,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   overlay.classList.add('active');
                 }
             }
+            setTimeout(()=>{alert('Что-то пошло не так. Проверьте интернет-подключение и перезагрузите страницу'); }, 3000);
       }
 
     } else {

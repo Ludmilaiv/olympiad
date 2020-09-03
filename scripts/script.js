@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   {
                   if (xhr.status != 200) 
                   {
-                      alert('Ошибка передачи данных. Проверьте интернет-подключение'); 
+                      alert('Ошибка передачи данных. Проверьте интернет-подключение и перезагрузите страницу'); 
                   } else if (xhr.responseText == "err") {
                       document.write("Что-то пошло не так");
                   } else {  
@@ -124,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
                       location.href = location.href;
                   }
               }
+              setTimeout(()=>{alert('Что-то пошло не так. Проверьте интернет-подключение и перезагрузите страницу'); }, 3000);
           }
 
           setTimeout(complite, 1000);
