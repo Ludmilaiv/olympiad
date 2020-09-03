@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // this.h.style.opacity = 1;
 
-      if (myX >= this.map.length || myY < 0) {
+      if (myX >= this.map.length || myX < 0) {
         //останавливаем все таймауты, чтобы остановить следующие шаги героя
 
         // console.log(this.timeOuts);
