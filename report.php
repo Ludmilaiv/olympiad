@@ -78,23 +78,31 @@ foreach($users as $user) {
 
       if (isset($results)) {
 
-        $finish_hours = floor($results->mission_time / 60 / 60);
+        $mission_hours = floor($results->mission_time / 60 / 60);
 
-        $finish_minutes = floor($results->mission_time / 60) % 60;
+        $mission_minutes = floor($results->mission_time / 60) % 60;
 
         $format_h = ''; $format_m = ''; 
 
-        if (floor($finish_hours / 10) == 0) $format_h = '0';
+        if (floor($mission_hours / 10) == 0) $format_h = '0';
 
-        if (floor($finish_minutes / 10) == 0) $format_m = '0';
+        if (floor($mission_minutes / 10) == 0) $format_m = '0';
 
-        echo '<td>'.date('d.m.y h:m', $results->starting_time).'</td>'
+        echo '<td>'.date('d.m.y h:m', $results->starting_time).'</td>';
 
-        .'<td>'.date('d.m.y h:m', $results->finish_time).'</td>'
+        if ($results->finish_time > 0) {
 
-        .'<td>'.$format_h.$finish_hours.':'.$format_m.$finish_minutes.'</td>'
+          echo '<td>'.date('d.m.y h:m', $results->finish_time).'</td>'
 
-        .'<td>'.$results->points.'</td>'
+          .'<td>'.$format_h.$mission_hours.':'.$format_m.$mission_minutes.'</td>';
+
+        } else {
+
+          echo '<td></td><td></td>';
+
+        }
+
+        echo '<td>'.$results->points.'</td>'
 
         .'<td>'.$results->blocks.'</td>';
 
