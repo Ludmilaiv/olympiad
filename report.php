@@ -46,7 +46,7 @@ $users = R::findAll( 'users' );
 
 
 
-echo '<table border=1 cellspacing=0><tr><th>Nп/п</th><th>Имя и фамилия</th><th>Возраст</th><th>Имя и фамилия родителя</th><th>Номер телефона</th><th>Email</th><th>Дата регистрации</th><th>Дата и время начала</th><th>Когда закончил</th><th>затрачено времени</th><th>Баллы</th><th>Количество блоков</th></tr>';
+echo '<table border=1 cellspacing=0><tr><th>Nп/п</th><th>id в БД</th><th>Имя и фамилия</th><th>Возраст</th><th>Имя и фамилия родителя</th><th>Номер телефона</th><th>Email</th><th>Дата регистрации</th><th>Дата и время начала</th><th>Когда закончил</th><th>затрачено времени</th><th>Баллы</th><th>Количество блоков</th></tr>';
 
 $n = 0;
 
@@ -61,6 +61,8 @@ foreach($users as $user) {
       echo '<tr>'
 
       .'<td>'.$n.'</td>'
+
+      .'<td>'.$user->id.'</td>'
 
       .'<td>'.$user->name.'</td>'
 
