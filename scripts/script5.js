@@ -191,6 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
       this.show(this.x, this.y);
 
       this.loopLimit = 1000; //защита от бесконечных циклов
+      
+      document.querySelector("#start").disabled = false;
 
     }
 
