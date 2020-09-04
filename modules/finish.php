@@ -13,13 +13,22 @@
 		<div class="top-panel lastPagetop-panel">
 			<div class="line-block">
 		  		<span class="lastPageTitle"><img src="../images/student.png" alt="">&nbsp;<?php echo $user->name ?></span>
-		  	</div>
+				</div>
+				
 		</div>
 		
 
 	  <div class="container">
 	    
     	<div id="lastPageLeftPannel">
+			<?php 
+				//Это выведется, если участник не успел пройти олимпиаду целиком
+				if ($results->finish_time == 0)
+					echo '
+							<div class="left ad" style="font-weight:bold;max-width:400px">К сожалению, время олимпиады окончено. Не переживай, если не успел дойти до конца. Ты получаешь сертификат участника</div><br>'
+    			
+				?>
+
     		<span class="title">Результаты</span>
     		<div class="results">
     			<div class="line">

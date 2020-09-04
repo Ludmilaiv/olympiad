@@ -43,9 +43,8 @@ if (!isset($user))
         <div>Олимпиада началась!</div>
         <div class="olimpBtn">
           <?php 
-           echo '<a id="startOlimp" href="http://quest.itgen/?u='.$_GET['u'].'&play25892"><strong>Старт</strong></a>'
+           echo '<a id="startOlimp" href="https://quest.itgen/?u='.$_GET['u'].'&play"><strong>Старт</strong></a>'
           ?>
-          <a id="startOlimp" href="#"><strong>Старт</strong></a>
           <div class="photo"><img src="../images/btn2.png" alt=""></div>
         </div>
         
