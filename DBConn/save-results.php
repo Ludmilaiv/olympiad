@@ -22,6 +22,7 @@ if (isset($_POST['level'])) {
 } 
 else if (isset($_POST['finish'])) {
 	$results->finish_time = time();
+	$results->mission_time = $results->finish_time - $results->starting_time;
 	if (isset($_POST['points']))
 		$results->points = $_POST['points'];
 	R::store($results);
